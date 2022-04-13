@@ -1,3 +1,5 @@
-django
-gunicorn
-poetry
+asgiref==3.5.0; python_version >= "3.8"
+django==4.0.4; python_version >= "3.8"
+gunicorn==20.1.0; python_version >= "3.5"
+sqlparse==0.4.2; python_version >= "3.8"
+tzdata==2022.1; sys_platform == "win32" and python_version >= "3.8"
