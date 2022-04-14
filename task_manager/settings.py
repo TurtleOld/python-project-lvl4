@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-301rtt%)ul(di9lbkq_2!fwttg(t57u-kua0@1b!dkmf5(pzkj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'sleepy-taiga-46843.herokuapp.com',
+    'localhost',
+    '127.0.0.1',
+    'webserver',
+]
 
 
 # Application definition
@@ -37,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'task_manager',
 ]
 
 MIDDLEWARE = [
