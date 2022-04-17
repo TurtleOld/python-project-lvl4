@@ -1,11 +1,14 @@
 lint:
-		poetry run flake8 task_manager
+	poetry run flake8 task_manager
 
 test-coverage:
-		poetry run pytest --cov=task_manager
+	poetry run pytest --cov=task_manager
 
 start:
-		poetry run python manage.py runserver
+	poetry run python manage.py runserver
+
+install:
+	poetry install
 		
 heroku:
 		git push heroku main
