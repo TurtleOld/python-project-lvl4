@@ -1,0 +1,8 @@
+lint:
+		poetry run flake8 task_manager
+
+test-coverage:
+		poetry run pytest --cov=task_manager
+
+start:
+		poetry run python manage.py runserver
