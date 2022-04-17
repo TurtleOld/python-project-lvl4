@@ -6,3 +6,9 @@ test-coverage:
 
 start:
 		poetry run python manage.py runserver
+		
+heroku:
+		git push heroku main
+		
+github:
+		git push origin main
