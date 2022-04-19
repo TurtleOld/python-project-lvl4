@@ -6,6 +6,7 @@ test-coverage:
 
 start:
 	python manage.py collectstatic --noinput
+	poetry run python manage.py migrate
 	poetry run python manage.py runserver
 
 install:
