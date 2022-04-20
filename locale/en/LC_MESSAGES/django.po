@@ -35,7 +35,7 @@ msgid "Вход"
 msgstr "Sign In"
 
 msgid "Регистрация"
-msgstr "Registration"
+msgstr "Sign Up"
 
 msgid "Привет от Хекслета!"
 msgstr "Greetings from Hexlet!"
