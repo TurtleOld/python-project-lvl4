@@ -164,7 +164,7 @@ coverage.xml
 .hypothesis/
 
 # Translations
-*.mo
+#*.mo
 
 # Django stuff:
 
