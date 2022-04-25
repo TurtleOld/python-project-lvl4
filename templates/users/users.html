@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="container wrapper flex-grow-1 mt-5 bg-light">
+    <div class="col-12">
+        <table class="bg-white border">
+            <tr>
+                <th class="border p-2">ID</th>
+                <th class="border p-2">Login</th>
+                <th class="border p-2">First Name</th>
+                <th class="border p-2">Last Name</th>
+                <th class="border p-2">E-Mail</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td class="border p-2">{{ user.id }}</td>
+                <td class="border p-2">{ user.username }}</td>
+                <td class="border p-2">{ user.first_name }}</td>
+                <td class="border p-2">{ user.last_name }}</td>
+                <td class="border p-2">{ user.email }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
