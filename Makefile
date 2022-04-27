@@ -5,9 +5,6 @@ test-coverage:
 	poetry run pytest --cov=task_manager
 
 start:
-	python manage.py collectstatic --noinput
-	poetry run python manage.py migrate
-	poetry run django-admin compilemessages
 	poetry run python manage.py runserver
 
 install:
