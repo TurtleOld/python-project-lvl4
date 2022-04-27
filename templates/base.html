@@ -24,8 +24,12 @@
             <a href="/users/create" class="p-2 text-dark">{% translate 'Регистрация' %}</a>
         </nav>
     </div>
-    {% block content %}
-    {% endblock %}
+    <div class="container wrapper flex-grow-1 mt-5 bg-light">
+        <div class="col-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
     <footer class="fixed-bottom">
         <div class="container my-5 pt-4 border-top">
             <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>

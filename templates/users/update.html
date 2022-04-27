@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-    <h1 class="my-4">{% translate 'Регистрация' %}</h1>
+    <h1 class="my-4">{% translate 'Изменение пользователя' %}</h1>
     <form method="POST">
         {% csrf_token %}
         {% for field in form %}
@@ -10,6 +10,6 @@
             {{ field }}
         </p>
         {% endfor %}
-        <button type="submit">{% translate 'Регистрация' %}</button>
+        <button type="submit">{% translate 'Изменить данные' %}</button>
     </form>
 {% endblock %}
