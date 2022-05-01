@@ -211,4 +211,6 @@ ENV/
 # mkdocs documentation
 /site
 
+task_manager/settings/development.py
+
 # End of https://www.gitignore.io/api/macos,linux,django,python,pycharm
