@@ -20,8 +20,12 @@
             <a href="/users/" class="p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
         </nav>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a href="/login/" class="p-2 text-dark">{% translate 'Вход' %}</a>
-            <a href="/users/create" class="p-2 text-dark">{% translate 'Регистрация' %}</a>
+                {% if not user.is_authenticated %}
+                    <a href="/login/" class="p-2 text-dark">{% translate 'Вход' %}</a>
+                    <a href="/users/create" class="p-2 text-dark">{% translate 'Регистрация' %}</a>
+                {% else %}
+                    <a href="/logout/" class="p-2 text-dark">{% translate 'Выход' %}</a>
+                {% endif %}
         </nav>
     </div>
     <div class="container wrapper flex-grow-1 mt-5 bg-light">
