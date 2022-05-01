@@ -7,10 +7,8 @@ import sys
 def main():
     """Run administrative tasks."""
     if os.path.isfile(os.path.join(os.path.dirname(__file__), 'task_manager/settings', 'development.py')):
-        # Если рядом с manage.py лежит local_settings.py — используем его
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "task_manager.settings.development")
     else:
-        # Если нет — используем стандартные настройки без секретов
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "task_manager.settings.production")
     try:
         from django.core.management import execute_from_command_line
