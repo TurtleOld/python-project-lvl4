@@ -1,5 +1,5 @@
 lint:
-	poetry run flake8 task_manager
+	poetry run flake8 task_manager users
 
 test-coverage:
 	poetry run pytest --cov=task_manager
