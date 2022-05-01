@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
-import dj_database_url
 
 from dotenv import load_dotenv
 
@@ -20,7 +19,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -30,8 +29,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY_DJANGO_SETTINGS')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = [
     'sleepy-taiga-46843.herokuapp.com',
@@ -56,7 +53,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = '/test'
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,19 +87,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-database = dj_database_url.config(conn_max_age=500, ssl_require=True)
-DATABASES['default'].update(database)
 
 
 # Simplified static file serving.
