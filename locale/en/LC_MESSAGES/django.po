@@ -59,6 +59,9 @@ msgstr "Learn more"
 msgid "Изменение пользователя"
 msgstr "Changing the user"
 
+msgid "Изменить пользователя"
+msgstr "Change the user"
+
 msgid "Вы уверены, что хотите удалить пользователя"
 msgstr "Are you sure you want to delete the user"
 
