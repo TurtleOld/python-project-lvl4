@@ -19,6 +19,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv('SECRET_KEY_DJANGO_SETTINGS')
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,8 +32,6 @@ DEBUG = os.getenv('DEBUG', 'true').lower() in {'yes', '1', 'true'}
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY_DJANGO_SETTINGS')
 
 ALLOWED_HOSTS = [
     'sleepy-taiga-46843.herokuapp.com',
