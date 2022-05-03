@@ -6,10 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    if os.path.isfile(os.path.join(os.path.dirname(__file__), 'task_manager/settings', 'development.py')):
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "task_manager.settings.development")
-    else:
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "task_manager.settings.production")
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task_manager.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
