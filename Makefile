@@ -17,7 +17,7 @@ github:
 		git push origin main
 
 test:
-	@poetry run coverage run --source='.' manage.py test
+		@poetry run coverage run --source='.' manage.py test
 
 test-coverage-report-xml:
 		@poetry run coverage xml
