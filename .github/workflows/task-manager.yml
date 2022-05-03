@@ -5,13 +5,7 @@ name: task-manager
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  - push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,6 +25,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install poetry
           make install
       - name: Install flake8
@@ -40,7 +35,7 @@ jobs:
         run: make lint
 
       - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v2.7.4
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.COVERAGE_ID_TASK_MANAGER }}
         with:

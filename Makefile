@@ -5,7 +5,7 @@ test-coverage:
 	poetry run python manage.py test
 
 start:
-	poetry run python manage.py runserver
+	poetry run coverage run manage.py test
 
 install:
 	poetry install
