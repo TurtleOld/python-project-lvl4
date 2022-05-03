@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 
 import dj_database_url
@@ -77,7 +78,7 @@ SQLITE_SETTINGS = {
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 }
 
-if os.getenv('DB_ENGINE') == 'SQLite':
+if os.getenv('DB_ENGINE') == 'SQLite' or 'test' in sys.argv:
     DATABASES['default'] = SQLITE_SETTINGS
 
 CONN_MAX_AGE = 500
