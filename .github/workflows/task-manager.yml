@@ -34,7 +34,7 @@ jobs:
       - name: Start linter
         run: make lint
 
-      - name: Run checks
+      - name: Run Test
         run: make test
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
