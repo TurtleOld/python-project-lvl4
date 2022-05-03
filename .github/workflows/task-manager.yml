@@ -37,13 +37,10 @@ jobs:
       - name: Run Test
         run: make test
         env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
-          GITHUB_AUTH_TOKEN: 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
-          GITHUB_WEBHOOK_TOKEN: ftuh0XG6MKrG17aHawgDdjXYSRbECnEk
+          SECRET_KEY_DJANGO_SETTINGS: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-
           CC_TEST_REPORTER_ID: ${{ secrets.COVERAGE_ID_TASK_MANAGER }}
         with:
           coverageCommand: make test-coverage-report-xml
