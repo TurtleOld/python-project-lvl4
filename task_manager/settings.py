@@ -21,7 +21,7 @@ load_dotenv()
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY_DJANGO_SETTINGS')
+SECRET_KEY = os.environ.get('SECRET_KEY_DJANGO_SETTINGS')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
