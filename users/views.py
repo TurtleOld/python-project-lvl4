@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, \
     UserPassesTestMixin, AccessMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.utils.translation import gettext
+from django.utils.translation import gettext, gettext_lazy
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
@@ -26,12 +26,30 @@ class CreateUser(CreateView, SuccessMessageMixin):
     form_class = RegisterUserForm
     success_url = reverse_lazy('login')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['button_text'] = gettext('Создать аккаунт')
+        return context
 
-class LoginUser(LoginView, SuccessMessageMixin):
+
+class LoginUser(SuccessMessageMixin, LoginView):
     model = User
     template_name = 'users/login.html'
     form_class = AuthUserForm
-    success_url = reverse_lazy('')
+    success_message = gettext_lazy('Вход успешно выполнен')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['button_text'] = gettext('Войти')
+        return context
+
+
+class LogoutUser(LogoutView, SuccessMessageMixin):
+
+    def dispatch(self, request, *args, **kwargs):
+        messages.add_message(request, messages.SUCCESS,
+                             gettext('Выход успешно выполнен'))
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UpdateUser(LoginRequiredMixin,
@@ -39,12 +57,14 @@ class UpdateUser(LoginRequiredMixin,
                  UserPassesTestMixin,
                  AccessMixin,
                  UpdateView,
-                 FormView,):
+                 FormView, ):
     model = User
     template_name = 'users/update.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('users:list')
-    error_message = 'You do not have permission to change another user'
+    success_message = gettext_lazy('Пользователь успешно обновлен')
+    error_message = gettext_lazy('У вас нет разрешения на изменение другого '
+                                 'пользователя')
     no_permission_url = 'users:list'
 
     def get_context_data(self, **kwargs):
@@ -65,7 +85,7 @@ class DeleteUser(LoginRequiredMixin,
                  UserPassesTestMixin,
                  AccessMixin,
                  DeleteView,
-                 FormView,):
+                 FormView, ):
     model = User
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:list')
