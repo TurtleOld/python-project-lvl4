@@ -38,6 +38,8 @@ jobs:
         run: make test
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
+          GITHUB_AUTH_TOKEN: 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
+          GITHUB_WEBHOOK_TOKEN: ftuh0XG6MKrG17aHawgDdjXYSRbECnEk
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
