@@ -39,10 +39,10 @@ jobs:
       - name: Start linter
         run: make lint
 
-#      - name: Test & publish code coverage
-#        uses: paambaati/codeclimate-action@v2.7.4
-#        env:
-#          CC_TEST_REPORTER_ID: ${{ secrets.COVERAGE_ID_Page_loader }}
-#        with:
-#          coverageCommand: make test-coverage
-#          debug: true
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.COVERAGE_ID_TASK_MANAGER }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
