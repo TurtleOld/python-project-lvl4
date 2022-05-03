@@ -38,6 +38,7 @@ jobs:
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.COVERAGE_ID_TASK_MANAGER }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
         with:
           coverageCommand: make test-coverage
           debug: true
