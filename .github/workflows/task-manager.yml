@@ -35,7 +35,7 @@ jobs:
         run: make lint
 
       - name: Run checks
-        run: make check
+        run: make test
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
       - name: Test & publish code coverage
