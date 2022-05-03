@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% load i18n %}
 {% block content %}
-    <h1 class="my-4">{% translate 'Страница входа' %}</h1>
+    <h1 class="my-4">{% translate 'Страница входа в ваш аккаунт' %}</h1>
     <form method="post">
         {% csrf_token %}
-        {% for field in form %}
-            {{ field.label_tag }}
-            {{ field }}
-        {% endfor %}
-        <button type="submit">{% translate 'Войти' %}</button>
+        <p>
+            {% bootstrap_form form %}
+        </p>
+        {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
     </form>
 {% endblock %}
