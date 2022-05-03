@@ -7,7 +7,7 @@
 {% bootstrap_javascript %}
 
 {# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
+
 
 {% load i18n %}
 
@@ -30,11 +30,12 @@
             <li><a href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
             <li><a href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
             {% else %}
-            <li><a href="{% url 'logout' %}?next=/" class="nav-link p-2 text-dark">{% translate 'Выход' %}</a></li>
+            <li><a href="{% url 'logout' %}" class="nav-link p-2 text-dark">{% translate 'Выход' %}</a></li>
             {% endif %}
         </ul>
     </nav>
     <div class="container wrapper flex-grow-1 mt-5">
+        {% bootstrap_messages %}
         <div class="col-12">
             {% block content %}
             {% endblock %}
