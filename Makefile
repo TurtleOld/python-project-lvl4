@@ -2,7 +2,7 @@ lint:
 	poetry run flake8 task_manager users
 
 test-coverage:
-	poetry run pytest --cov=task_manager
+	poetry run python manage.py test
 
 start:
 	poetry run python manage.py runserver
