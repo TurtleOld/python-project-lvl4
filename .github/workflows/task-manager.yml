@@ -21,6 +21,10 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9.12'
+          
+      # Run the flake lint
+      - name: Python flake8 Lint
+        uses: py-actions/flake8@v2.0.0
 
       # Runs a single command using the runners shell
       - name: Install dependencies
