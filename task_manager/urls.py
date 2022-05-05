@@ -23,6 +23,7 @@ from users.views import LoginUser, LogoutUser
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('users/', include('users.urls'), name='users_list'),
+    path('statuses/', include('statuses.urls'), name='statuses_list'),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', LogoutUser.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
