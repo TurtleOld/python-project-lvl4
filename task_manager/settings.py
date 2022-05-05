@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'task_manager',
     'users',
+    'statuses',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -94,9 +95,9 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
