@@ -3,6 +3,7 @@
 {% load i18n %}
 
 {% block content %}
+    <title>{{ title }}</title>
     <h1 class="my-4">{% translate 'Создать статус' %}</h1>
     <form method="post">
         {% csrf_token %}
