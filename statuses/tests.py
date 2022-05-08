@@ -1,7 +1,5 @@
-import faker
 from django.test import TestCase
 from django.urls import reverse_lazy, reverse
-from faker import Faker
 
 from statuses.models import Status
 from users.models import User
@@ -10,12 +8,10 @@ from users.models import User
 class TestStatus(TestCase):
     fixtures = ['users.yaml', 'statuses.yaml']
 
-
     def setUp(self) -> None:
         self.user = User.objects.get(pk=1)
         self.status1 = Status.objects.get(pk=1)
         self.status2 = Status.objects.get(pk=2)
-        self.faker = Faker()
 
     def test_status_list(self):
         self.client.force_login(self.user)
@@ -40,7 +36,7 @@ class TestStatus(TestCase):
 
     def test_change_status(self):
         self.client.force_login(self.user)
-        url = reverse('statuses:update_status', args=(self.status1.pk, ))
+        url = reverse('statuses:update_status', args=(self.status1.pk,))
         name_new_status = {'name': 'Завершен'}
         response = self.client.post(url, name_new_status, follow=True)
         self.assertEqual(Status.objects.get(pk=self.status1.id), self.status1)
@@ -64,5 +60,3 @@ class TestStatus(TestCase):
     def test_status_list_without_authorization(self):
         response = self.client.get(reverse_lazy('statuses:list'))
         self.assertRedirects(response, '/login/')
-
-
