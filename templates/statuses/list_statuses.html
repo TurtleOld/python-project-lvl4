@@ -16,8 +16,8 @@
         {% for status in statuses %}
         <tr>
             <td class="border p-2">{{ status.id }}</td>
-            <td class="border p-2">{{ status.status_name }}</td>
-            <td class="border p-2">{{ status.date_joined|date:"d.m.Y H:i" }}</td>
+            <td class="border p-2">{{ status.name }}</td>
+            <td class="border p-2">{{ status.created_at|date:"d.m.Y H:i" }}</td>
             <td class="border p-2">
                 <a href="{% url 'statuses:update_status' status.id %}">{% translate 'Изменить' %}</a><br>
                 <a href="{% url 'statuses:delete_status' status.id %}">{% translate 'Удалить' %}</a>
