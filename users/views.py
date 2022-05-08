@@ -89,8 +89,9 @@ class DeleteUser(LoginRequiredMixin,
     model = User
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:list')
-    error_message = 'You do not have permission to change another user'
-    no_permission_url = 'users:list'
+    error_message = gettext_lazy('У вас нет разрешения на изменение другого '
+                                 'пользователя')
+    no_permission_url = 'statuses:list'
 
     def test_func(self):
         return self.request.user == self.get_object()
