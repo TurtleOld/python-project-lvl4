@@ -33,7 +33,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
     success_message = gettext_lazy('Задача успешно создана!')
-    success_url = reverse_lazy('task:list')
+    success_url = reverse_lazy('tasks:list')
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
@@ -58,7 +58,7 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
     success_message = gettext_lazy('Задача успешно создана!')
-    success_url = reverse_lazy('task:list')
+    success_url = reverse_lazy('tasks:list')
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
@@ -79,7 +79,7 @@ class TaskDelete(LoginRequiredMixin,
                  DeleteView):
     model = Task
     template_name = 'tasks/delete_task.html'
-    success_url = reverse_lazy('task:list')
+    success_url = reverse_lazy('tasks:list')
 
     def get_context_data(self, **kwargs):
         context = super(TaskDelete, self).get_context_data(**kwargs)
