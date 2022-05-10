@@ -31,6 +31,9 @@
                 <li>
                     <a href="{% url 'statuses:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Статусы' %}</a>
                 </li>
+                <li>
+                    <a href="{% url 'tasks:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Задачи' %}</a>
+                </li>
             {% endif %}
         </ul>
         <ul class="navbar-nav flex-row mb-0">
@@ -38,6 +41,7 @@
             <li><a href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
             <li><a href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
             {% else %}
+            <li class="navbar"> {% translate 'Вы вошли как: ' %} {{ user.first_name }} {{ user.last_name }}  |</li>
             <li><a href="{% url 'logout' %}" class="nav-link p-2 text-dark">{% translate 'Выход' %}</a></li>
             {% endif %}
         </ul>
@@ -49,9 +53,9 @@
             {% endblock %}
         </div>
     </div>
-    <footer class="fixed-bottom">
+    <footer>
         <div class="container my-5 pt-4 border-top">
-            <a target="_blank" href="https://ru.hexlet.io">Hexlet</a>
+            <a class="text-decoration-none" target="_blank" href="https://ru.hexlet.io">Hexlet</a>
         </div>
     </footer>
   </body>
