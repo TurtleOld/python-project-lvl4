@@ -2,16 +2,18 @@ from django.test import TestCase
 from django.urls import reverse_lazy, reverse
 
 from statuses.models import Status
+from tasks.models import Task
 from users.models import User
 
 
 class TestStatus(TestCase):
-    fixtures = ['users.yaml', 'statuses.yaml']
+    fixtures = ['users.yaml', 'statuses.yaml', 'tasks.yaml']
 
     def setUp(self) -> None:
         self.user = User.objects.get(pk=1)
         self.status1 = Status.objects.get(pk=1)
         self.status2 = Status.objects.get(pk=2)
+        self.task1 = Task.objects.get(pk=1)
 
     def test_status_list(self):
         self.client.force_login(self.user)
@@ -42,20 +44,21 @@ class TestStatus(TestCase):
         self.assertEqual(Status.objects.get(pk=self.status1.id), self.status1)
         self.assertRedirects(response, '/statuses/')
 
-    # def test_delete_status(self):
-    #     self.client.force_login(self.user)
-    #     url = reverse('statuses:delete_status', args=(self.status1.pk,))
-    #     response = self.client.post(url, follow=True)
-    #     self.assertRedirects(response, '/statuses/')
-    #     with self.assertRaises(User.DoesNotExist):
-    #         User.objects.get(pk=self.status1.pk)
+    def test_delete_status(self):
+        self.client.force_login(self.user)
+        self.task1.delete()
+        url = reverse('statuses:delete_status', args=(self.status1.pk,))
+        response = self.client.post(url, follow=True)
+        self.assertRedirects(response, '/statuses/')
+        with self.assertRaises(Status.DoesNotExist):
+            Status.objects.get(pk=self.status1.pk)
 
-    # def test_delete_status_with_tasks(self):
-    #     self.client.force_login(self.user)
-    #     url = reverse_lazy('statuses:delete_status', args=(self.status1.pk,))
-    #     response = self.client.post(url, follow=True)
-    #     self.assertRedirects(response, '/statuses/')
-    #     self.assertTrue(Status.objects.filter(pk=self.status1.id).exists())
+    def test_delete_status_with_tasks(self):
+        self.client.force_login(self.user)
+        url = reverse_lazy('statuses:delete_status', args=(self.status1.pk,))
+        response = self.client.post(url, follow=True)
+        self.assertTrue(Status.objects.filter(pk=self.status1.id).exists())
+        self.assertRedirects(response, '/statuses/')
 
     def test_status_list_without_authorization(self):
         response = self.client.get(reverse_lazy('statuses:list'))
