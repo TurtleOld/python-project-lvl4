@@ -21,3 +21,9 @@ test:
 
 test-coverage-report-xml:
 		@poetry run coverage xml
+
+heroku-migrate:
+		heroku run python manage.py migrate
+
+heroku-make-migrations:
+		heroku run python manage.py makemigrations
