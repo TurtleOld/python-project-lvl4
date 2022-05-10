@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'task_manager',
     'users',
     'statuses',
+    'tasks',
 ]
 
 AUTH_USER_MODEL = 'users.User'
