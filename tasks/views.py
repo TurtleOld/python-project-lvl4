@@ -4,7 +4,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, \
+    TemplateView, DetailView
 
 from tasks.forms import TaskForm
 from tasks.models import Task
@@ -73,7 +74,9 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
         return redirect(self.no_permission_url)
 
 
-class TaskDelete(SuccessMessageMixin, DeleteView):
+class TaskDelete(LoginRequiredMixin,
+                 SuccessMessageMixin, AccessMixin,
+                 DeleteView):
     model = Task
     template_name = 'tasks/delete_task.html'
     success_url = reverse_lazy('task:list')
@@ -91,3 +94,18 @@ class TaskDelete(SuccessMessageMixin, DeleteView):
         else:
             super(TaskDelete, self).form_valid(form)
         return redirect(self.success_url)
+
+
+class TaskView(LoginRequiredMixin,
+               SuccessMessageMixin, AccessMixin,
+               DetailView):
+    model = Task
+    template_name = 'tasks/view_task.html'
+    context_object_name = 'task'
+    error_message = gettext('У вас нет прав на просмотр данной страницы! '
+                            'Авторизуйтесь!')
+    no_permission_url = reverse_lazy('login')
+
+    def handle_no_permission(self):
+        messages.error(self.request, self.error_message)
+        return redirect(self.no_permission_url)

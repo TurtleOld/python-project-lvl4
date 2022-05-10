@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1 class="my-4">{% translate 'Просмотр задачи' %}</h1>
+    <div class="card">
+        <div class="card-header bg-secondary text-white">
+            <h2>{% translate 'Имя задачи' %}</h2>
+        </div>
+        <div class="card-body bg-light">
+            <p>{% translate 'Описание задачи' %}</p>
+            <hr>
+            <div class="container">
+                <div class="row p-1">
+                    <div class="col">Автор</div>
+                    <div class="col">{{ task.author }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">Исполнитель</div>
+                    <div class="col">{{ task.executor }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">Статус</div>
+                    <div class="col">{{ task.status }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">Дата создания</div>
+                    <div class="col">{{ task.created_at|date:'d.m.Y H:i' }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">Метки
+                        <ul>
+                            <li>F</li>
+                        </ul>
+                    </div>
+                </div>
+                <td class="border p-2">
+                    <a class="text-decoration-none" href="{% url 'tasks:update_task' task.id %}">{% translate 'Изменить' %}</a><br>
+                    <a class="text-decoration-none" href="{% url 'tasks:delete_task' task.id %}">{% translate 'Удалить' %}</a>
+                </td>
+            </div>
+        </div>
+    </div>
+{% endblock %}
