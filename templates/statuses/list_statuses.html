@@ -6,7 +6,7 @@
 {% block content %}
     <h1 class="my-4">{% translate 'Статусы' %}</h1>
     <a class="text-decoration-none" href="{% url 'statuses:create' %}">{% translate 'Создать статус' %}</a>
-    <table class="bg-white border table table-striped">
+    <table class="bg-white mt-1 border table table-striped">
         <tr>
             <th class="border p-2">ID</th>
             <th class="border p-2">{% translate 'Имя' %}</th>
@@ -19,8 +19,8 @@
             <td class="border p-2">{{ status.name }}</td>
             <td class="border p-2">{{ status.created_at|date:"d.m.Y H:i" }}</td>
             <td class="border p-2">
-                <a href="{% url 'statuses:update_status' status.id %}">{% translate 'Изменить' %}</a><br>
-                <a href="{% url 'statuses:delete_status' status.id %}">{% translate 'Удалить' %}</a>
+                <a class="text-decoration-none" href="{% url 'statuses:update_status' status.id %}">{% translate 'Изменить' %}</a><br>
+                <a class="text-decoration-none" href="{% url 'statuses:delete_status' status.id %}">{% translate 'Удалить' %}</a>
             </td>
         </tr>
         {% endfor %}
