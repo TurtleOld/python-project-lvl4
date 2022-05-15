@@ -24,6 +24,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('users/', include('users.urls'), name='users_list'),
     path('statuses/', include('statuses.urls'), name='statuses_list'),
+    path('labels/', include('labels.urls'), name='labels_list'),
     re_path(r'tasks/',
             include('tasks.urls', namespace='task'), name='tasks_list'),
     path('login/', LoginUser.as_view(), name='login'),
