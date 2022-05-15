@@ -32,6 +32,9 @@
                     <a href="{% url 'statuses:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Статусы' %}</a>
                 </li>
                 <li>
+                    <a href="{% url 'labels:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Метки' %}</a>
+                </li>
+                <li>
                     <a href="{% url 'tasks:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Задачи' %}</a>
                 </li>
             {% endif %}
