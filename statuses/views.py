@@ -28,7 +28,7 @@ class StatusCreate(SuccessMessageMixin, CreateView):
     model = Status
     template_name = 'statuses/create_status.html'
     form_class = StatusForm
-    success_message = gettext_lazy('Статус успешно создан!')
+    success_message = gettext_lazy('Статус успешно создан')
     success_url = reverse_lazy('statuses:list')
 
     def get_context_data(self, **kwargs):
@@ -39,13 +39,13 @@ class StatusCreate(SuccessMessageMixin, CreateView):
         return context
 
 
-class UpdateStatus(LoginRequiredMixin,
+class StatusUpdate(LoginRequiredMixin,
                    SuccessMessageMixin,
                    AccessMixin,
                    UpdateView,
                    FormView, ):
     model = Status
-    template_name = 'statuses/update.html'
+    template_name = 'statuses/update_status.html'
     form_class = StatusForm
     success_url = reverse_lazy('statuses:list')
     success_message = gettext_lazy('Статус успешно обновлен')
@@ -63,13 +63,13 @@ class UpdateStatus(LoginRequiredMixin,
         return redirect(self.no_permission_url)
 
 
-class DeleteStatus(LoginRequiredMixin,
+class StatusDelete(LoginRequiredMixin,
                    SuccessMessageMixin,
                    AccessMixin,
                    DeleteView,
                    FormView, ):
     model = Status
-    template_name = 'statuses/delete.html'
+    template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:list')
 
     def form_valid(self, form):
@@ -78,5 +78,5 @@ class DeleteStatus(LoginRequiredMixin,
                                                       'статус, потому что он '
                                                       'используется'))
         else:
-            super(DeleteStatus, self).form_valid(form)
+            super(StatusDelete, self).form_valid(form)
         return redirect(self.success_url)
