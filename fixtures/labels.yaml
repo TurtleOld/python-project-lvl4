@@ -1,0 +1,10 @@
+-   model: labels.label
+    pk: 1
+    fields:
+        name: Don't worry
+        created_at: 2022-05-15 18:04:42.322924+00:00
+-   model: labels.label
+    pk: 2
+    fields:
+        name: Family
+        created_at: 2022-05-15 18:05:02.477834+00:00
