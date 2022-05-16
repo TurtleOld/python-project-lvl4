@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, \
-    TemplateView, DetailView
+    DetailView
 
 from tasks.forms import TaskForm
 from tasks.models import Task
@@ -84,7 +84,6 @@ class TaskDelete(LoginRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super(TaskDelete, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Удаление задачи')
-        context['button_text'] = gettext_lazy('Удалить задачу')
         return context
 
     def form_valid(self, form):

@@ -4,7 +4,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, \
+    FormView
 
 from labels.forms import LabelForm
 from labels.models import Label
@@ -42,7 +43,7 @@ class LabelCreate(SuccessMessageMixin, CreateView):
 
 
 class LabelUpdate(LoginRequiredMixin,
-                  SuccessMessageMixin, AccessMixin, UpdateView):
+                  SuccessMessageMixin, AccessMixin, UpdateView, FormView):
     model = Label
     template_name = 'labels/update_label.html'
     form_class = LabelForm
@@ -65,17 +66,23 @@ class LabelUpdate(LoginRequiredMixin,
 class LabelDelete(LoginRequiredMixin,
                   SuccessMessageMixin,
                   AccessMixin,
-                  DeleteView
-                  ):
+                  DeleteView,
+                  FormView, ):
     model = Label
     template_name = 'labels/delete_label.html'
     success_url = reverse_lazy('labels:list')
 
     def form_valid(self, form):
         if self.get_object().tasks.all():
-            messages.error(self.request, gettext_lazy('Вы не можете удалить '
-                                                      'статус, потому что он '
-                                                      'используется'))
+            messages.error(self.request, gettext_lazy(
+                'Вы не можете удалить метку, потому что она используется'))
         else:
             super(LabelDelete, self).form_valid(form)
         return redirect(self.success_url)
+
+    def get_context_data(self, **kwargs):
+        context = super(LabelDelete, self).get_context_data(**kwargs)
+        context['title'] = gettext_lazy('Удаление метки')
+        return context
+
+

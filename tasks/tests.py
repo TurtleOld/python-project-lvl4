@@ -1,13 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse_lazy, reverse
 
+from labels.models import Label
 from statuses.models import Status
 from tasks.models import Task
 from users.models import User
 
 
 class TestTask(TestCase):
-    fixtures = ['users.yaml', 'statuses.yaml', 'tasks.yaml']
+    fixtures = ['users.yaml', 'statuses.yaml', 'tasks.yaml', 'labels.yaml']
 
     def setUp(self) -> None:
         self.user1 = User.objects.get(pk=1)
@@ -16,6 +17,8 @@ class TestTask(TestCase):
         self.status2 = Status.objects.get(pk=2)
         self.task1 = Task.objects.get(pk=1)
         self.task2 = Task.objects.get(pk=2)
+        self.label1 = Label.objects.get(pk=1)
+        self.label2 = Label.objects.get(pk=2)
 
     def test_list_tasks(self):
         self.client.force_login(self.user1)
@@ -31,7 +34,8 @@ class TestTask(TestCase):
             'description': 'description',
             'author': 1,
             'executor': 2,
-            'status': 1
+            'status': 1,
+            'labels': [1, 2]
         }
         response = self.client.post(
             reverse_lazy('tasks:create'),
@@ -51,7 +55,8 @@ class TestTask(TestCase):
             'description': 'description',
             'author': 2,
             'executor': 1,
-            'status': 2
+            'status': 2,
+            'labels': [1, 2]
         }
 
         response = self.client.post(
@@ -65,16 +70,15 @@ class TestTask(TestCase):
 
     def test_delete_task(self):
         self.client.force_login(self.user1)
-        self.task1.delete()
-        url = reverse('tasks:delete_task', args=(self.task2.pk,))
+        url = reverse_lazy('tasks:delete_task', args=(self.task1.id,))
         response = self.client.post(url, follow=True)
-        self.assertRedirects(response, '/tasks/')
         with self.assertRaises(Task.DoesNotExist):
-            Task.objects.get(pk=self.task1.pk)
+            Task.objects.get(pk=self.task1.id)
+        self.assertRedirects(response, '/tasks/')
 
     def test_delete_task_not_author(self):
         self.client.force_login(self.user1)
-        url = reverse('tasks:delete_task', args=(self.task1.pk,))
+        url = reverse_lazy('tasks:delete_task', args=(self.task2.pk,))
         response = self.client.post(url, follow=True)
-        self.assertTrue(Task.objects.filter(pk=self.task1.id).exists())
+        self.assertTrue(Task.objects.filter(pk=self.task2.pk).exists())
         self.assertRedirects(response, '/tasks/')
