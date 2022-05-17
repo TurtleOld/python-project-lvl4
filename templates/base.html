@@ -23,27 +23,27 @@
         <ul class="navbar-nav mr-auto">
             {% if not user.is_authenticated %}
                 <li>
-                    <a href="{% url 'users:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
+                    <a class="nav-link" href="{% url 'users:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
                 </li>
             {% else %}
                 <li>
-                    <a href="{% url 'users:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
+                    <a class="nav-link" href="{% url 'users:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'statuses:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Статусы' %}</a>
+                    <a class="nav-link" href="{% url 'statuses:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Статусы' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'labels:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Метки' %}</a>
+                    <a class="nav-link" href="{% url 'labels:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Метки' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'tasks:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Задачи' %}</a>
+                    <a class="nav-link" href="{% url 'tasks:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Задачи' %}</a>
                 </li>
             {% endif %}
         </ul>
         <ul class="navbar-nav">
             {% if not user.is_authenticated %}
-                <li><a href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
-                <li><a href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
+                <li><a class="nav-link" href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
+                <li><a class="nav-link" href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
             {% else %}
                 <form action="/logout/" method="post">
                     {% csrf_token %}
