@@ -8,3 +8,4 @@ Django~=4.0.4
 dj-database-url
 django-bootstrap4
 django-filter
+rollbar
