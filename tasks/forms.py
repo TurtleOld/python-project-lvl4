@@ -1,6 +1,7 @@
+from django import forms
 from django.db.models import Value
 from django.db.models.functions import Concat
-from django.forms import ModelForm, CheckboxInput
+from django.forms import ModelForm
 import django_filters
 
 from labels.models import Label
@@ -40,18 +41,18 @@ class TasksFilter(django_filters.FilterSet):
     labels = django_filters.ChoiceFilter(label=gettext('Метка'),
                                          choices=all_labels)
 
-    self_tasks = django_filters.BooleanFilter(
+    self_task = django_filters.BooleanFilter(
         label=gettext('Только свои задачи'),
-        widget=CheckboxInput(),
+        widget=forms.CheckboxInput(),
         method='filter_current_user',
-        field_name='self_tasks'
+        field_name='self_task'
     )
 
     def filter_current_user(self, queryset, name, value):
         if value:
             author = getattr(self.request, 'user', None)
             queryset = queryset.filter(author=author)
-            return queryset
+        return queryset
 
     class Meta:
         model = Task
