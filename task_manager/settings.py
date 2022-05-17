@@ -200,7 +200,7 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ROLLBAR = {
-    'access_token': '5438e46335e84696bd487888ab6b8e3d',
+    'access_token': os.environ.get('ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
