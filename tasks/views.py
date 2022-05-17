@@ -112,6 +112,11 @@ class TaskView(LoginRequiredMixin,
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['labels'] = self.get_object().labels.all()
+        return context
+
     def handle_no_permission(self):
         messages.error(self.request, self.error_message)
         return redirect(self.no_permission_url)
