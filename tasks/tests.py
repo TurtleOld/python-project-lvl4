@@ -99,3 +99,4 @@ class TestTask(TestCase):
         status = Task._meta.get_field('labels')
         result = FilterSet.filter_for_field(status, 'labels')
         self.assertEqual(result.field_name, 'labels')
+
