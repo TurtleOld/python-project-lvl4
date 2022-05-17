@@ -19,10 +19,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY_DJANGO_SETTINGS')
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,12 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_bootstrap5',
+    'bootstrap4',
     'task_manager',
     'users',
     'statuses',
     'tasks',
     'labels',
+    'django_filters',
 ]
 
 AUTH_USER_MODEL = 'users.User'
@@ -63,7 +62,6 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -125,6 +123,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        ...
+    ),
+}
+
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
@@ -174,7 +179,6 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 FIXTURE_DIRS = [
     os.path.join(BASE_DIR, 'fixtures'),
 ]
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
