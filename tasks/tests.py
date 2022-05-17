@@ -1,8 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse_lazy, reverse
+from django_filters import FilterSet, BooleanFilter
 
 from labels.models import Label
 from statuses.models import Status
+from tasks.forms import TasksFilter
 from tasks.models import Task
 from users.models import User
 
@@ -82,3 +84,18 @@ class TestTask(TestCase):
         response = self.client.post(url, follow=True)
         self.assertTrue(Task.objects.filter(pk=self.task2.pk).exists())
         self.assertRedirects(response, '/tasks/')
+
+    def test_filter_status(self):
+        status = Task._meta.get_field('status')
+        result = FilterSet.filter_for_field(status, 'status')
+        self.assertEqual(result.field_name, 'status')
+
+    def test_filter_executor(self):
+        status = Task._meta.get_field('executor')
+        result = FilterSet.filter_for_field(status, 'executor')
+        self.assertEqual(result.field_name, 'executor')
+
+    def test_filter_label(self):
+        status = Task._meta.get_field('labels')
+        result = FilterSet.filter_for_field(status, 'labels')
+        self.assertEqual(result.field_name, 'labels')
