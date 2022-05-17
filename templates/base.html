@@ -17,9 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <nav class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-light border-bottom shadow-sm navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
         <a href="/" class="navbar-brand mr-md-3">{%  translate 'Менеджер задач' %}</a>
-        <ul class="me-auto navbar-nav mb-0 flex-row">
+        <div id="navbarToggleExternalContent" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
             {% if not user.is_authenticated %}
                 <li>
                     <a href="{% url 'users:list' %}" class="nav-link p-2 text-dark my-0 mr-md-auto">{% translate 'Пользователи' %}</a>
@@ -39,15 +40,18 @@
                 </li>
             {% endif %}
         </ul>
-        <ul class="navbar-nav flex-row mb-0">
+        <ul class="navbar-nav">
             {% if not user.is_authenticated %}
-            <li><a href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
-            <li><a href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
+                <li><a href="{% url 'login' %}" class="nav-link p-2 text-dark">{% translate 'Вход' %}</a></li>
+                <li><a href="{% url 'users:create' %}" class="nav-link p-2 text-dark">{% translate 'Регистрация' %}</a></li>
             {% else %}
-            <li class="navbar"> {% translate 'Вы вошли как: ' %} {{ user.first_name }} {{ user.last_name }}  |</li>
-            <li><a href="{% url 'logout' %}" class="nav-link p-2 text-dark">{% translate 'Выход' %}</a></li>
+                <form action="/logout/" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn nav-link" value="{% translate 'Выход' %}">
+                </form>
             {% endif %}
         </ul>
+        </div>
     </nav>
     <div class="container wrapper flex-grow-1 mt-5">
         {% bootstrap_messages %}
