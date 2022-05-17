@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load django_bootstrap5 %}
+{% load bootstrap4 %}
+
 
 {% load i18n %}
 
@@ -7,6 +8,15 @@
     <title>{% translate 'Список задач' %}</title>
     <h1 class="my-4">{% translate 'Задачи' %}</h1>
     <a class="text-decoration-none" href="{% url 'tasks:create' %}">{% translate 'Создать задачу' %}</a>
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <form method="get" class="form-inline justify-content-around">
+                {% csrf_token %}
+                {% bootstrap_form filter.form form_group_class='form-group' field_class='ml-2 mr-3' %}
+                {% bootstrap_button button_filter_text button_type='submit' button_class='btn btn-outline-primary' %}
+            </form>
+        </div>
+    </div>
     <table class="bg-white mt-1 border table table-striped">
         <tr>
             <th class="border p-2">ID</th>
