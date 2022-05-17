@@ -6,22 +6,29 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, \
     DetailView
+from django_filters.views import FilterView
 
-from tasks.forms import TaskForm
+from tasks.forms import TaskForm, TasksFilter
 from tasks.models import Task
 from users.models import User
 
 
 class TasksList(LoginRequiredMixin,
                 SuccessMessageMixin,
-                ListView,
+                FilterView,
                 AccessMixin):
     model = Task
     template_name = 'tasks/list_tasks.html'
     context_object_name = 'tasks'
+    filterset_class = TasksFilter
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(TasksList, self).get_context_data(**kwargs)
+        context['button_filter_text'] = 'Показать'
+        return context
 
     def handle_no_permission(self):
         messages.error(self.request, self.error_message)
