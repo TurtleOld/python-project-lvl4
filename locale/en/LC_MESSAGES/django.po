@@ -184,3 +184,6 @@ msgstr "Status list"
 
 msgid "Список меток"
 msgstr "Label list"
+
+msgid "Имя"
+msgstr "Name"
