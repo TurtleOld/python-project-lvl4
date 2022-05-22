@@ -18,13 +18,13 @@ psycopg2-binary = "^2.9.3"
 whitenoise = "^6.1"
 django-filter = "^21.1"
 django-bootstrap4 = "^22.1"
+rollbar = "^0.16.2"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
 PyYAML = "^6.0"
 Faker = "^13.7.0"
 coverage = "^6.3.2"
-rollbar = "^0.16.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
