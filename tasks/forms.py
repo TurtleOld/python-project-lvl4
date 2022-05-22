@@ -7,7 +7,7 @@ import django_filters
 from labels.models import Label
 from statuses.models import Status
 from tasks.models import Task
-from django.utils.translation import gettext
+from django.utils.translation import gettext, gettext_lazy
 
 from users.models import User
 
@@ -27,22 +27,22 @@ class TaskForm(ModelForm):
 
 class TasksFilter(django_filters.FilterSet):
     statuses = Status.objects.values_list('id', 'name', named=True).all()
-    status = django_filters.ChoiceFilter(label='Статус',
+    status = django_filters.ChoiceFilter(label=gettext_lazy('Статус'),
                                          choices=statuses)
 
     executors = User.objects.values_list('id', Concat('first_name',
                                                       Value(' '),
                                                       'last_name'),
                                          named=True).all()
-    executor = django_filters.ChoiceFilter(label='Исполнитель',
+    executor = django_filters.ChoiceFilter(label=gettext_lazy('Исполнитель'),
                                            choices=executors)
 
     all_labels = Label.objects.values_list('id', 'name', named=True)
-    labels = django_filters.ChoiceFilter(label='Метка',
+    labels = django_filters.ChoiceFilter(label=gettext_lazy('Метка'),
                                          choices=all_labels)
 
     self_task = django_filters.BooleanFilter(
-        label=gettext('Только свои задачи'),
+        label=gettext_lazy('Только свои задачи'),
         widget=forms.CheckboxInput(),
         method='filter_current_user',
         field_name='self_task'
