@@ -129,7 +129,10 @@ msgid "Метка"
 msgstr "Label"
 
 msgid "Дата создания"
-msgstr "Statuses"
+msgstr "Create Date"
+
+msgid "Полное имя"
+msgstr "Full name"
 
 msgid "Изменить статус"
 msgstr "Updating a status"
