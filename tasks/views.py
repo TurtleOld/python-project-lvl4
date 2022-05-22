@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, \
+from django.views.generic import CreateView, UpdateView, DeleteView, \
     DetailView
 from django_filters.views import FilterView
 

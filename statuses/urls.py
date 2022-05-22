@@ -1,6 +1,7 @@
 from django.urls import path
 
-from statuses.views import StatusesList, CreateStatus, UpdateStatus, DeleteStatus
+from statuses.views import StatusesList, CreateStatus, UpdateStatus, \
+    DeleteStatus
 
 app_name = 'statuses'
 urlpatterns = [

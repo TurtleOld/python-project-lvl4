@@ -84,5 +84,3 @@ class DeleteLabel(LoginRequiredMixin,
         context = super(DeleteLabel, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Удаление метки')
         return context
-
-

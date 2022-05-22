@@ -204,5 +204,5 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-import rollbar
+import rollbar # noqa 402
 rollbar.init(**ROLLBAR)

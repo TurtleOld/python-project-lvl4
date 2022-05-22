@@ -1,10 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse_lazy, reverse
-from django_filters import FilterSet, BooleanFilter
+from django_filters import FilterSet
 
 from labels.models import Label
 from statuses.models import Status
-from tasks.forms import TasksFilter
 from tasks.models import Task
 from users.models import User
 
@@ -99,4 +98,3 @@ class TestTask(TestCase):
         status = Task._meta.get_field('labels')
         result = FilterSet.filter_for_field(status, 'labels')
         self.assertEqual(result.field_name, 'labels')
-

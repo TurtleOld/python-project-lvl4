@@ -1,5 +1,5 @@
 lint:
-		poetry run flake8 task_manager users
+		poetry run flake8 task_manager users statuses tasks labels
 
 test-coverage:
 		@poetry run coverage run manage.py test
