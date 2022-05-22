@@ -80,8 +80,8 @@ msgstr "Change"
 msgid "Удалить"
 msgstr "Delete"
 
-msgid "Вход успешно выполнен"
-msgstr "Login completed successfully"
+msgid "Вы залогинены"
+msgstr "You are logged in"
 
 msgid "Выход успешно выполнен"
 msgstr "Logout completed successfully"
