@@ -30,5 +30,5 @@ urlpatterns = [
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', LogoutUser.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
