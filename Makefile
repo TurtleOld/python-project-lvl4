@@ -5,7 +5,7 @@ test-coverage:
 		@poetry run coverage run manage.py test
 
 start:
-		poetry run python manage.py runserver
+		@poetry run python manage.py runserver
 
 install:
 		poetry install
@@ -27,3 +27,8 @@ heroku-migrate:
 
 heroku-make-migrations:
 		heroku run python manage.py makemigrations
+
+coverage:
+		@poetry run coverage run manage.py test
+		@poetry run coverage xml
+		@poetry run coverage report
