@@ -125,6 +125,9 @@ msgstr "Executor"
 msgid "Статус"
 msgstr "Status"
 
+msgid "Метка"
+msgstr "Label"
+
 msgid "Дата создания"
 msgstr "Statuses"
 
