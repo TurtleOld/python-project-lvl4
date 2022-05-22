@@ -44,7 +44,7 @@ jobs:
       - name: Run Test
         run: make test
         env:
-          SECRET_KEY_DJANGO_SETTINGS: ${{ secrets.SECRET_KEY_DJANGO_SETTINGS }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
