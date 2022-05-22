@@ -35,7 +35,7 @@ class TasksList(LoginRequiredMixin,
         return redirect(self.no_permission_url)
 
 
-class TaskCreate(SuccessMessageMixin, CreateView):
+class CreateTask(SuccessMessageMixin, CreateView):
     model = Task
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
@@ -50,7 +50,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
-        context = super(TaskCreate, self).get_context_data(**kwargs)
+        context = super(CreateTask, self).get_context_data(**kwargs)
         context['title'] = gettext('Создание задачи')
         context['button_text'] = gettext('Создать задачу')
         return context
@@ -60,7 +60,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
         return redirect(self.no_permission_url)
 
 
-class TaskUpdate(SuccessMessageMixin, UpdateView):
+class UpdateTask(SuccessMessageMixin, UpdateView):
     model = Task
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
@@ -71,7 +71,7 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
     no_permission_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
-        context = super(TaskUpdate, self).get_context_data(**kwargs)
+        context = super(UpdateTask, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Обновление задачи')
         context['button_text'] = gettext_lazy('Обновить задачу')
         return context
@@ -81,7 +81,7 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
         return redirect(self.no_permission_url)
 
 
-class TaskDelete(LoginRequiredMixin,
+class DeleteTask(LoginRequiredMixin,
                  SuccessMessageMixin, AccessMixin,
                  DeleteView):
     model = Task
@@ -89,7 +89,7 @@ class TaskDelete(LoginRequiredMixin,
     success_url = reverse_lazy('tasks:list')
 
     def get_context_data(self, **kwargs):
-        context = super(TaskDelete, self).get_context_data(**kwargs)
+        context = super(DeleteTask, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Удаление задачи')
         return context
 
@@ -98,7 +98,7 @@ class TaskDelete(LoginRequiredMixin,
             messages.error(self.request, gettext_lazy('Вы не можете удалить '
                                                       'чужую задачу!'))
         else:
-            super(TaskDelete, self).form_valid(form)
+            super(DeleteTask, self).form_valid(form)
         return redirect(self.success_url)
 
 

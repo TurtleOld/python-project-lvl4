@@ -26,7 +26,7 @@ class LabelsList(LoginRequiredMixin,
         return redirect(self.no_permission_url)
 
 
-class LabelCreate(SuccessMessageMixin, CreateView):
+class CreateLabel(SuccessMessageMixin, CreateView):
     model = Label
     template_name = 'labels/create_label.html'
     form_class = LabelForm
@@ -42,7 +42,7 @@ class LabelCreate(SuccessMessageMixin, CreateView):
         return context
 
 
-class LabelUpdate(LoginRequiredMixin,
+class UpdateLabel(LoginRequiredMixin,
                   SuccessMessageMixin, AccessMixin, UpdateView, FormView):
     model = Label
     template_name = 'labels/update_label.html'
@@ -63,7 +63,7 @@ class LabelUpdate(LoginRequiredMixin,
         return redirect(self.no_permission_url)
 
 
-class LabelDelete(LoginRequiredMixin,
+class DeleteLabel(LoginRequiredMixin,
                   SuccessMessageMixin,
                   AccessMixin,
                   DeleteView,
@@ -77,11 +77,11 @@ class LabelDelete(LoginRequiredMixin,
             messages.error(self.request, gettext_lazy(
                 'Вы не можете удалить метку, потому что она используется'))
         else:
-            super(LabelDelete, self).form_valid(form)
+            super(DeleteLabel, self).form_valid(form)
         return redirect(self.success_url)
 
     def get_context_data(self, **kwargs):
-        context = super(LabelDelete, self).get_context_data(**kwargs)
+        context = super(DeleteLabel, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Удаление метки')
         return context
 

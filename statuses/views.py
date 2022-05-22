@@ -11,7 +11,7 @@ from statuses.forms import StatusForm
 from statuses.models import Status
 
 
-class StatusList(LoginRequiredMixin, ListView, AccessMixin):
+class StatusesList(LoginRequiredMixin, ListView, AccessMixin):
     model = Status
     template_name = 'statuses/list_statuses.html'
     context_object_name = 'statuses'
@@ -24,7 +24,7 @@ class StatusList(LoginRequiredMixin, ListView, AccessMixin):
         return redirect(self.no_permission_url)
 
 
-class StatusCreate(SuccessMessageMixin, CreateView):
+class CreateStatus(SuccessMessageMixin, CreateView):
     model = Status
     template_name = 'statuses/create_status.html'
     form_class = StatusForm
@@ -39,7 +39,7 @@ class StatusCreate(SuccessMessageMixin, CreateView):
         return context
 
 
-class StatusUpdate(LoginRequiredMixin,
+class UpdateStatus(LoginRequiredMixin,
                    SuccessMessageMixin,
                    AccessMixin,
                    UpdateView,
@@ -63,7 +63,7 @@ class StatusUpdate(LoginRequiredMixin,
         return redirect(self.no_permission_url)
 
 
-class StatusDelete(LoginRequiredMixin,
+class DeleteStatus(LoginRequiredMixin,
                    SuccessMessageMixin,
                    AccessMixin,
                    DeleteView,
@@ -78,5 +78,5 @@ class StatusDelete(LoginRequiredMixin,
                                                       'статус, потому что он '
                                                       'используется'))
         else:
-            super(StatusDelete, self).form_valid(form)
+            super(DeleteStatus, self).form_valid(form)
         return redirect(self.success_url)
