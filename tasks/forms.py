@@ -27,18 +27,18 @@ class TaskForm(ModelForm):
 
 class TasksFilter(django_filters.FilterSet):
     statuses = Status.objects.values_list('id', 'name', named=True).all()
-    status = django_filters.ChoiceFilter(label=gettext('Статус'),
+    status = django_filters.ChoiceFilter(label='Статус',
                                          choices=statuses)
 
     executors = User.objects.values_list('id', Concat('first_name',
                                                       Value(' '),
                                                       'last_name'),
                                          named=True).all()
-    executor = django_filters.ChoiceFilter(label=gettext('Исполнитель'),
+    executor = django_filters.ChoiceFilter(label='Исполнитель',
                                            choices=executors)
 
     all_labels = Label.objects.values_list('id', 'name', named=True)
-    labels = django_filters.ChoiceFilter(label=gettext('Метка'),
+    labels = django_filters.ChoiceFilter(label='Метка',
                                          choices=all_labels)
 
     self_task = django_filters.BooleanFilter(
