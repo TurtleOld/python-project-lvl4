@@ -48,7 +48,7 @@ class LogoutUser(LogoutView, SuccessMessageMixin):
 
     def dispatch(self, request, *args, **kwargs):
         messages.add_message(request, messages.SUCCESS,
-                             gettext('Выход успешно выполнен'))
+                             gettext('Вы разлогинены'))
         return super().dispatch(request, *args, **kwargs)
 
 

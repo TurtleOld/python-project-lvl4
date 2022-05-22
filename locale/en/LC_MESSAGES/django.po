@@ -83,8 +83,8 @@ msgstr "Delete"
 msgid "Вы залогинены"
 msgstr "You are logged in"
 
-msgid "Выход успешно выполнен"
-msgstr "Logout completed successfully"
+msgid "Вы разлогинены"
+msgstr "You are logged out"
 
 msgid "Пользователь успешно обновлен"
 msgstr "The user has been successfully updated"
