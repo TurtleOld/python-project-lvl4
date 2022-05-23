@@ -109,6 +109,12 @@ msgstr "Viewing a task"
 msgid "Обновление задачи"
 msgstr "Updating a task"
 
+msgid "Создание задачи"
+msgstr "Creating a task"
+
+msgid "Создать задачу"
+msgstr "Create a task"
+
 msgid "Удаление задачи"
 msgstr "Deleting a task"
 
@@ -192,6 +198,9 @@ msgstr "Status successfully changed"
 
 msgid "Задача успешно создана"
 msgstr "The task was successfully created"
+
+msgid "Задача успешно изменена"
+msgstr "The task has been successfully changed"
 
 msgid "Статус успешно удалён"
 msgstr "Status successfully deleted"
