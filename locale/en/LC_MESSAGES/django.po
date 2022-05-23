@@ -86,6 +86,9 @@ msgstr "You are logged in"
 msgid "Вы разлогинены"
 msgstr "You are logged out"
 
+msgid "Пользователь успешно зарегистрирован"
+msgstr "The user has been successfully registered"
+
 msgid "Пользователь успешно обновлен"
 msgstr "The user has been successfully updated"
 

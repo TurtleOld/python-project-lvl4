@@ -25,6 +25,7 @@ class CreateUser(CreateView, SuccessMessageMixin):
     template_name = 'users/register.html'
     form_class = RegisterUserForm
     success_url = reverse_lazy('login')
+    success_message = gettext_lazy('Пользователь успешно зарегистрирован')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
