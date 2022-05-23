@@ -20,7 +20,7 @@ class UsersList(ListView):
     context_object_name = 'users'
 
 
-class CreateUser(CreateView, SuccessMessageMixin):
+class CreateUser(SuccessMessageMixin, CreateView):
     model = User
     template_name = 'users/register.html'
     form_class = RegisterUserForm
