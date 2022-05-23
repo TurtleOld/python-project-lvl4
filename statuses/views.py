@@ -48,7 +48,7 @@ class UpdateStatus(LoginRequiredMixin,
     template_name = 'statuses/update_status.html'
     form_class = StatusForm
     success_url = reverse_lazy('statuses:list')
-    success_message = gettext_lazy('Статус успешно обновлен')
+    success_message = gettext_lazy('Статус успешно изменён')
     error_message = gettext_lazy('У вас нет разрешения на изменение статуса')
     no_permission_url = 'statuses:list'
 

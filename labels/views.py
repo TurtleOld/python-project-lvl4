@@ -47,7 +47,7 @@ class UpdateLabel(LoginRequiredMixin,
     model = Label
     template_name = 'labels/update_label.html'
     form_class = LabelForm
-    success_message = gettext('Метка успешно обновлена')
+    success_message = gettext('Метка успешно изменена')
     success_url = reverse_lazy('labels:list')
     error_message = gettext_lazy('У вас нет разрешения на изменение метки')
     no_permission_url = 'statuses:list'

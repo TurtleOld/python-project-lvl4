@@ -180,3 +180,9 @@ msgstr "Label list"
 
 msgid "Имя"
 msgstr "Name"
+
+msgid "Метка успешно изменена"
+msgstr "Label changed successfully"
+
+msgid "Статус успешно изменён"
+msgstr "Status successfully changed"
