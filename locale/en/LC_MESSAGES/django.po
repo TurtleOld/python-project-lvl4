@@ -127,6 +127,9 @@ msgstr "Status"
 msgid "Метка"
 msgstr "Label"
 
+msgid "Описание"
+msgstr "Description"
+
 msgid "Дата создания"
 msgstr "Create Date"
 
