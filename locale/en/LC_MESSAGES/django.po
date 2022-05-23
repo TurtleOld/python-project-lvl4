@@ -49,7 +49,6 @@ msgstr "Log In"
 msgid "Выход"
 msgstr "Log out"
 
-
 msgid "Привет от Хекслета!"
 msgstr "Greetings from Hexlet!"
 
@@ -113,8 +112,8 @@ msgstr "Updating a task"
 msgid "Удаление задачи"
 msgstr "Deleting a task"
 
-msgid "Создать задачу"
-msgstr "Create a task"
+msgid "Создать"
+msgstr "Create"
 
 msgid "Обновить задачу"
 msgstr "Update task"

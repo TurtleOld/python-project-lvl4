@@ -37,7 +37,7 @@ class CreateLabel(SuccessMessageMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = gettext('Создание метки')
         context['label'] = gettext('Имя')
-        context['button_text'] = gettext('Создать метку')
+        context['button_text'] = gettext('Создать')
 
         return context
 

@@ -52,7 +52,7 @@ class CreateTask(SuccessMessageMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(CreateTask, self).get_context_data(**kwargs)
         context['title'] = gettext('Создание задачи')
-        context['button_text'] = gettext('Создать задачу')
+        context['button_text'] = gettext('Создать')
         return context
 
     def handle_no_permission(self):

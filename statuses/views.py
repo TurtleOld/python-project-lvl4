@@ -34,7 +34,7 @@ class CreateStatus(SuccessMessageMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = gettext('Создание статуса')
-        context['button_text'] = gettext('Создать статус')
+        context['button_text'] = gettext('Создать')
         context['label'] = gettext('Имя')
         return context
 
