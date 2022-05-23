@@ -64,7 +64,7 @@ class UpdateTask(SuccessMessageMixin, UpdateView):
     model = Task
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
-    success_message = gettext_lazy('Задача успешно обновлена')
+    success_message = gettext_lazy('Задача успешно изменена')
     success_url = reverse_lazy('tasks:list')
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
