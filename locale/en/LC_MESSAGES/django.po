@@ -62,8 +62,8 @@ msgstr "Learn more"
 msgid "Изменение пользователя"
 msgstr "Changing the user"
 
-msgid "Изменить пользователя"
-msgstr "Change the user"
+msgid "Изменить"
+msgstr "Change"
 
 msgid "Вы уверены, что хотите удалить пользователя"
 msgstr "Are you sure you want to delete the user"
@@ -73,9 +73,6 @@ msgstr "Deleting the user"
 
 msgid "Да, удалить!"
 msgstr "Yes, delete!"
-
-msgid "Изменить"
-msgstr "Change"
 
 msgid "Удалить"
 msgstr "Delete"
@@ -89,8 +86,8 @@ msgstr "You are logged out"
 msgid "Пользователь успешно зарегистрирован"
 msgstr "The user has been successfully registered"
 
-msgid "Пользователь успешно обновлен"
-msgstr "The user has been successfully updated"
+msgid "Пользователь успешно изменён"
+msgstr "User successfully changed"
 
 msgid "У вас нет разрешения на изменение другого пользователя"
 msgstr "You do not have permission to change another user"
