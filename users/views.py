@@ -28,7 +28,7 @@ class CreateUser(CreateView, SuccessMessageMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['button_text'] = gettext('Создать аккаунт')
+        context['button_text'] = gettext('Зарегистрировать')
         return context
 
 

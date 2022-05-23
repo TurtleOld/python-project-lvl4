@@ -37,8 +37,8 @@ msgstr "Sign In"
 msgid "Регистрация"
 msgstr "Sign Up"
 
-msgid "Создать аккаунт"
-msgstr "Create account"
+msgid "Зарегистрировать"
+msgstr "Register"
 
 msgid "Страница входа в ваш аккаунт"
 msgstr "Log in to your account"
