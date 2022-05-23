@@ -7,7 +7,7 @@ import django_filters
 from labels.models import Label
 from statuses.models import Status
 from tasks.models import Task
-from django.utils.translation import gettext, gettext_lazy
+from django.utils.translation import gettext_lazy
 
 from users.models import User
 
@@ -38,7 +38,7 @@ class TasksFilter(django_filters.FilterSet):
                                            choices=executors)
 
     all_labels = Label.objects.values_list('id', 'name', named=True)
-    labels = django_filters.ChoiceFilter(label=gettext_lazy('Метки'),
+    labels = django_filters.ChoiceFilter(label=gettext_lazy('Метка'),
                                          choices=all_labels)
 
     self_task = django_filters.BooleanFilter(
