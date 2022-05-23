@@ -38,7 +38,7 @@ class TasksFilter(django_filters.FilterSet):
                                            choices=executors)
 
     all_labels = Label.objects.values_list('id', 'name', named=True)
-    labels = django_filters.ChoiceFilter(label=gettext_lazy('Метка'),
+    labels = django_filters.ChoiceFilter(label=gettext_lazy('Метки'),
                                          choices=all_labels)
 
     self_task = django_filters.BooleanFilter(
