@@ -71,6 +71,7 @@ class DeleteStatus(LoginRequiredMixin,
     model = Status
     template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:list')
+    success_message = gettext_lazy('Статус успешно удалён')
 
     def form_valid(self, form):
         if self.get_object().tasks.all():

@@ -187,5 +187,11 @@ msgstr "Label changed successfully"
 msgid "Статус успешно изменён"
 msgstr "Status successfully changed"
 
-msgid " Задача успешно создана"
+msgid "Задача успешно создана"
 msgstr "The task was successfully created"
+
+msgid "Статус успешно удалён"
+msgstr "Status successfully deleted"
+
+msgid "Метка успешно удалена"
+msgstr "The label was successfully deleted"

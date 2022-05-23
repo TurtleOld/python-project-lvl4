@@ -87,6 +87,7 @@ class DeleteTask(LoginRequiredMixin,
     model = Task
     template_name = 'tasks/delete_task.html'
     success_url = reverse_lazy('tasks:list')
+    success_message = gettext_lazy('Задача успешно удалена')
 
     def get_context_data(self, **kwargs):
         context = super(DeleteTask, self).get_context_data(**kwargs)

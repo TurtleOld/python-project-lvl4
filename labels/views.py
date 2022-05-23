@@ -71,6 +71,7 @@ class DeleteLabel(LoginRequiredMixin,
     model = Label
     template_name = 'labels/delete_label.html'
     success_url = reverse_lazy('labels:list')
+    success_message = gettext_lazy('Метка успешно удалена')
 
     def form_valid(self, form):
         if self.get_object().tasks.all():
