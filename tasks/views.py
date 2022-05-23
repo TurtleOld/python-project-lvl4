@@ -73,7 +73,7 @@ class UpdateTask(SuccessMessageMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super(UpdateTask, self).get_context_data(**kwargs)
         context['title'] = gettext_lazy('Обновление задачи')
-        context['button_text'] = gettext_lazy('Обновить задачу')
+        context['button_text'] = gettext_lazy('Изменить')
         return context
 
     def handle_no_permission(self):

@@ -55,7 +55,7 @@ class UpdateStatus(LoginRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = gettext('Изменение статуса')
-        context['button_text'] = gettext('Изменить статус')
+        context['button_text'] = gettext('Изменить')
         return context
 
     def handle_no_permission(self):

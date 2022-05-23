@@ -115,9 +115,6 @@ msgstr "Deleting a task"
 msgid "Создать"
 msgstr "Create"
 
-msgid "Обновить задачу"
-msgstr "Update task"
-
 msgid "Автор"
 msgstr "Author"
 
@@ -136,12 +133,6 @@ msgstr "Create Date"
 msgid "Полное имя"
 msgstr "Full name"
 
-msgid "Изменить статус"
-msgstr "Updating a status"
-
-msgid "Создать статус"
-msgstr "Creating a status"
-
 msgid "Удаление статуса"
 msgstr "Deleting a status"
 
@@ -156,12 +147,6 @@ msgstr "Updating a label"
 
 msgid "Изменение метки"
 msgstr "Changing the label"
-
-msgid "Изменить метку"
-msgstr "Change the label"
-
-msgid "Создать метку"
-msgstr "Create a label"
 
 msgid "Удаление метки"
 msgstr "Deleting a label"

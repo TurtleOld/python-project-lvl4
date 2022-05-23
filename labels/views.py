@@ -55,7 +55,7 @@ class UpdateLabel(LoginRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = gettext('Изменение метки')
-        context['button_text'] = gettext('Изменить метку')
+        context['button_text'] = gettext('Изменить')
         return context
 
     def handle_no_permission(self):
