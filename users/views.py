@@ -90,6 +90,7 @@ class DeleteUser(LoginRequiredMixin,
     model = User
     template_name = 'users/delete.html'
     success_url = reverse_lazy('users:list')
+    success_message = gettext_lazy('Пользователь успешно удалён')
     error_message = gettext_lazy('У вас нет разрешения на изменение другого '
                                  'пользователя')
     no_permission_url = 'users:list'

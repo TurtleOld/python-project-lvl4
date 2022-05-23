@@ -89,6 +89,9 @@ msgstr "The user has been successfully registered"
 msgid "Пользователь успешно изменён"
 msgstr "User successfully changed"
 
+msgid "Пользователь успешно удалён"
+msgstr "The user has been successfully deleted"
+
 msgid "У вас нет разрешения на изменение другого пользователя"
 msgstr "You do not have permission to change another user"
 
