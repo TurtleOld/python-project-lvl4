@@ -71,8 +71,8 @@ msgstr "Are you sure you want to delete the user"
 msgid "Удаление пользователя"
 msgstr "Deleting the user"
 
-msgid "Да, удалить!"
-msgstr "Yes, delete!"
+msgid "Да, удалить"
+msgstr "Yes, delete"
 
 msgid "Удалить"
 msgstr "Delete"
