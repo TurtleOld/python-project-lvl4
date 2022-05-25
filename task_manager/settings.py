@@ -25,7 +25,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-print(BASE_DIR)
 DEBUG = os.getenv('DEBUG', 'true').lower() in {'yes', '1', 'true'}
 
 # Quick-start development settings - unsuitable for production
@@ -106,7 +105,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'task_manager.urls'
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'task_manager/templates')
-
+print(TEMPLATE_DIR)
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
