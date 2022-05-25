@@ -51,10 +51,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'task_manager',
-    'users',
-    'statuses',
-    'tasks',
-    'labels',
+    'task_manager.users',
+    'task_manager.statuses',
+    'task_manager.tasks',
+    'task_manager.labels',
     'django_filters',
 ]
 
@@ -105,7 +105,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'task_manager/templates')
 
 TEMPLATES = [
     {
@@ -175,7 +175,7 @@ LANGUAGES = (
     ("ru", "Russian"),
 )
 
-LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'task_manager/locale'),)
 
 # Fixture dirs
 FIXTURE_DIRS = [
@@ -186,12 +186,12 @@ FIXTURE_DIRS = [
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'task_manager/staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'task_manager/static'),
 )
 
 # Default primary key field type

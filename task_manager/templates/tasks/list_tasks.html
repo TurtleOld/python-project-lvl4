@@ -1,0 +1,45 @@
+{% extends '../base.html' %}
+{% load bootstrap4 %}
+
+
+{% load i18n %}
+
+{% block content %}
+    <title>{% translate 'Список задач' %}</title>
+    <h1 class="my-4">{% translate 'Задачи' %}</h1>
+    <a class="text-decoration-none" href="{% url 'tasks:create' %}">{% translate 'Создать задачу' %}</a>
+    <div class="card mb-3">
+        <div class="card-body bg-light">
+            <form method="get" class="form-inline justify-content-around">
+                {% csrf_token %}
+                {% bootstrap_form filter.form form_group_class='form-group' field_class='ml-2 mr-3' %}
+                {% bootstrap_button button_filter_text button_type='submit' button_class='btn btn-outline-primary' %}
+            </form>
+        </div>
+    </div>
+    <table class="bg-white mt-1 border table table-striped">
+        <tr>
+            <th class="border p-2">ID</th>
+            <th class="border p-2">{% translate 'Имя' %}</th>
+            <th class="border p-2">{% translate 'Статус' %}</th>
+            <th class="border p-2">{% translate 'Автор' %}</th>
+            <th class="border p-2">{% translate 'Исполнитель' %}</th>
+            <th class="border p-2">{% translate 'Дата создания' %}</th>
+            <th class="border p-2"></th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td class="border p-2">{{ task.id }}</td>
+            <td class="border p-2"><a class="text-decoration-none" href="{% url 'tasks:view_task' task.id %}">{{ task.name }}</a></td>
+            <td class="border p-2">{{ task.status }}</td>
+            <td class="border p-2">{{ task.author }}</td>
+            <td class="border p-2">{{ task.executor }}</td>
+            <td class="border p-2">{{ task.created_at|date:"d.m.Y H:i" }}</td>
+            <td class="border p-2">
+                <a class="text-decoration-none" href="{% url 'tasks:update_task' task.id %}">{% translate 'Изменить' %}</a><br>
+                <a class="text-decoration-none" href="{% url 'tasks:delete_task' task.id %}">{% translate 'Удалить' %}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

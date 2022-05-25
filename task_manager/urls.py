@@ -18,15 +18,15 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 
 from task_manager import settings
-from users.views import LoginUser, LogoutUser
+from task_manager.users.views import LoginUser, LogoutUser
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
-    path('users/', include('users.urls'), name='users_list'),
-    path('statuses/', include('statuses.urls'), name='statuses_list'),
-    path('labels/', include('labels.urls'), name='labels_list'),
+    path('users/', include('task_manager.users.urls'), name='users_list'),
+    path('statuses/', include('task_manager.statuses.urls'), name='statuses_list'),
+    path('labels/', include('task_manager.labels.urls'), name='labels_list'),
     re_path(r'tasks/',
-            include('tasks.urls', namespace='task'), name='tasks_list'),
+            include('task_manager.tasks.urls', namespace='task'), name='tasks_list'),
     path('login/', LoginUser.as_view(), name='login'),
     path('logout/', LogoutUser.as_view(),
          {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
