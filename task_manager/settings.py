@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+print(BASE_DIR)
 DEBUG = os.getenv('DEBUG', 'true').lower() in {'yes', '1', 'true'}
 
 # Quick-start development settings - unsuitable for production
@@ -176,11 +176,6 @@ LANGUAGES = (
 )
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'task_manager/locale'),)
-
-# Fixture dirs
-FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'fixtures'),
-]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
