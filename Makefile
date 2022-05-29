@@ -4,11 +4,27 @@ lint:
 test-coverage:
 		@poetry run coverage run manage.py test
 
-start:
-		@poetry run python manage.py runserver
+start: migrate transcompile
+		@poetry run python manage.py runserver 127.0.0.1:8000
 
-install:
-		poetry install
+install: .env
+		@poetry install --extras psycopg2-binary
+
+.env:
+		@test ! -f .env && cp .env.example .env
+
+migrate:
+		@poetry run python manage.py migrate
+
+setup: migrate
+		@echo Create a super user
+		@poetry run python manage.py createsuperuser
+
+transprepare:
+		@poetry run django-admin makemessages
+
+transcompile:
+		@poetry run django-admin compilemessages
 		
 heroku:
 		git push heroku main
