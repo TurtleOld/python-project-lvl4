@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, \
     FormView
 from task_manager.users.models import User
 from task_manager.users.forms import RegisterUserForm, AuthUserForm
+from task_manager.mixins import HandleNoPermissionMixin
 
 
 # Create your views here.
@@ -56,7 +57,7 @@ class LogoutUser(LogoutView, SuccessMessageMixin):
 class UpdateUser(LoginRequiredMixin,
                  SuccessMessageMixin,
                  UserPassesTestMixin,
-                 AccessMixin,
+                 HandleNoPermissionMixin,
                  UpdateView,
                  FormView, ):
     model = User
@@ -76,15 +77,11 @@ class UpdateUser(LoginRequiredMixin,
     def test_func(self):
         return self.request.user == self.get_object()
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
-
 
 class DeleteUser(LoginRequiredMixin,
                  SuccessMessageMixin,
                  UserPassesTestMixin,
-                 AccessMixin,
+                 HandleNoPermissionMixin,
                  DeleteView,
                  FormView, ):
     model = User
@@ -97,7 +94,3 @@ class DeleteUser(LoginRequiredMixin,
 
     def test_func(self):
         return self.request.user == self.get_object()
-
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)

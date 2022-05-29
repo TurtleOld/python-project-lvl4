@@ -11,12 +11,13 @@ from django_filters.views import FilterView
 from task_manager.tasks.forms import TaskForm, TasksFilter
 from task_manager.tasks.models import Task
 from task_manager.users.models import User
+from task_manager.mixins import HandleNoPermissionMixin
 
 
 class TasksList(LoginRequiredMixin,
+                HandleNoPermissionMixin,
                 SuccessMessageMixin,
-                FilterView,
-                AccessMixin):
+                FilterView):
     model = Task
     template_name = 'tasks/list_tasks.html'
     context_object_name = 'tasks'
@@ -30,12 +31,8 @@ class TasksList(LoginRequiredMixin,
         context['button_filter_text'] = 'Показать'
         return context
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
 
-
-class CreateTask(SuccessMessageMixin, CreateView):
+class CreateTask(SuccessMessageMixin, HandleNoPermissionMixin, CreateView):
     model = Task
     template_name = 'tasks/create_task.html'
     form_class = TaskForm
@@ -55,12 +52,8 @@ class CreateTask(SuccessMessageMixin, CreateView):
         context['button_text'] = gettext('Создать')
         return context
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
 
-
-class UpdateTask(SuccessMessageMixin, UpdateView):
+class UpdateTask(SuccessMessageMixin, HandleNoPermissionMixin, UpdateView):
     model = Task
     template_name = 'tasks/update_task.html'
     form_class = TaskForm
@@ -76,18 +69,17 @@ class UpdateTask(SuccessMessageMixin, UpdateView):
         context['button_text'] = gettext_lazy('Изменить')
         return context
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
-
 
 class DeleteTask(LoginRequiredMixin,
-                 SuccessMessageMixin, AccessMixin,
+                 SuccessMessageMixin, HandleNoPermissionMixin,
                  DeleteView):
     model = Task
     template_name = 'tasks/delete_task.html'
     success_url = reverse_lazy('tasks:list')
     success_message = gettext_lazy('Задача успешно удалена')
+    error_message = gettext_lazy('У вас нет прав на просмотр данной страницы! '
+                                 'Авторизуйтесь!')
+    no_permission_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super(DeleteTask, self).get_context_data(**kwargs)
@@ -104,7 +96,7 @@ class DeleteTask(LoginRequiredMixin,
 
 
 class TaskView(LoginRequiredMixin,
-               SuccessMessageMixin, AccessMixin,
+               SuccessMessageMixin, HandleNoPermissionMixin,
                DetailView):
     model = Task
     template_name = 'tasks/view_task.html'
@@ -117,7 +109,3 @@ class TaskView(LoginRequiredMixin,
         context = super().get_context_data(**kwargs)
         context['labels'] = self.get_object().labels.all()
         return context
-
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
