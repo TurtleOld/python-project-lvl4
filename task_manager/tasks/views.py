@@ -52,12 +52,6 @@ class UpdateTask(SuccessMessageMixin, HandleNoPermissionMixin, UpdateView):
                                  'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
 
-    def get_context_data(self, **kwargs):
-        context = super(UpdateTask, self).get_context_data(**kwargs)
-        context['title'] = gettext_lazy('Обновление задачи')
-        context['button_text'] = gettext_lazy('Изменить')
-        return context
-
 
 class DeleteTask(LoginRequiredMixin,
                  SuccessMessageMixin, HandleNoPermissionMixin,
@@ -70,17 +64,13 @@ class DeleteTask(LoginRequiredMixin,
                                  'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
 
-    def get_context_data(self, **kwargs):
-        context = super(DeleteTask, self).get_context_data(**kwargs)
-        context['title'] = gettext_lazy('Удаление задачи')
-        return context
-
     def form_valid(self, form):
         if self.request.user != self.get_object().author:
             messages.error(self.request, gettext_lazy('Вы не можете удалить '
                                                       'чужую задачу!'))
         else:
-            super(DeleteTask, self).form_valid(form)
+            self.object.delete()
+            messages.success(self.request, self.success_message)
         return redirect(self.success_url)
 
 
@@ -93,8 +83,3 @@ class TaskView(LoginRequiredMixin,
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['labels'] = self.get_object().labels.all()
-        return context

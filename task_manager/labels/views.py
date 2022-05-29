@@ -61,5 +61,6 @@ class DeleteLabel(LoginRequiredMixin,
             messages.error(self.request, gettext_lazy(
                 'Вы не можете удалить метку, потому что она используется'))
         else:
-            super(DeleteLabel, self).form_valid(form)
+            self.object.delete()
+            messages.success(self.request, self.success_message)
         return redirect(self.success_url)
