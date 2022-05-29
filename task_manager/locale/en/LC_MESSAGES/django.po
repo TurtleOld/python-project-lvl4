@@ -202,6 +202,9 @@ msgstr "The task was successfully created"
 msgid "Задача успешно изменена"
 msgstr "The task has been successfully changed"
 
+msgid "Задача успешно удалена"
+msgstr "The task was successfully deleted"
+
 msgid "Статус успешно удалён"
 msgstr "Status successfully deleted"
 
