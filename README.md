@@ -1,10 +1,27 @@
-### Hexlet tests and linter status:
+
 [![Actions Status](https://github.com/TurtleOld/python-project-lvl4/workflows/hexlet-check/badge.svg)](https://github.com/TurtleOld/python-project-lvl4/actions)
-
-### Project tests and linter status:
-
 [![Actions Status](https://github.com/TurtleOld/python-project-lvl4/workflows/task-manager/badge.svg)](https://github.com/TurtleOld/python-project-lvl4/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/0e29a897d14dcdedfd13/maintainability)](https://codeclimate.com/github/TurtleOld/python-project-lvl4/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0e29a897d14dcdedfd13/test_coverage)](https://codeclimate.com/github/TurtleOld/python-project-lvl4/test_coverage)
 
-[Link to heroku app](https://sleepy-taiga-46843.herokuapp.com/)
+# Task manager
+Task manager - система управления задачами, подобная http://www.redmine.org/. Она позволяет ставить задачи, назначать исполнителей и менять их статусы. Для работы с системой требуется регистрация и аутентификация.  
+
+## Установка
+
+_[Инструкция по установке и запуску приложения](INSTALLATION.md)_
+
+---
+
+## Локализация текста
+
+Установить **gettext** (при работе с Poetry).
+
+1. Выполнить `make transprepare` &mdash; подготовка файлов ***.po** в директории **locale/en/LC_MESSAGES**.
+2. Внести изменения в эти файлы.
+3. Выполнить `make transcompile`.
+
+---
+
+View the work of the project on [Heroku](https://sleepy-taiga-46843.herokuapp.com/)
+
