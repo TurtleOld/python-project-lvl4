@@ -26,11 +26,6 @@ class TasksList(LoginRequiredMixin,
                                  'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(TasksList, self).get_context_data(**kwargs)
-        context['button_filter_text'] = 'Показать'
-        return context
-
 
 class CreateTask(SuccessMessageMixin, HandleNoPermissionMixin, CreateView):
     model = Task
@@ -45,12 +40,6 @@ class CreateTask(SuccessMessageMixin, HandleNoPermissionMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = User.objects.get(pk=self.request.user.pk)
         return super().form_valid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super(CreateTask, self).get_context_data(**kwargs)
-        context['title'] = gettext('Создание задачи')
-        context['button_text'] = gettext('Создать')
-        return context
 
 
 class UpdateTask(SuccessMessageMixin, HandleNoPermissionMixin, UpdateView):

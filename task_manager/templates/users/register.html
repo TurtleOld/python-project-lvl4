@@ -1,6 +1,7 @@
 {% extends '../base.html' %}
 {% load bootstrap4 %}
 {% load i18n %}
+
 {% block content %}
     <h1 class="my-4">{% translate 'Регистрация' %}</h1>
     <form method="POST">
@@ -8,6 +9,6 @@
         <p>
             {% bootstrap_form form %}
         </p>
-        {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
+        {% bootstrap_button button_text_user_create button_type="submit" button_class="btn btn-primary" %}
     </form>
 {% endblock %}

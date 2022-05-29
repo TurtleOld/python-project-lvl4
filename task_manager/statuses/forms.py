@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from task_manager.statuses.models import Status
-from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy
 
 
 class StatusForm(ModelForm):
@@ -8,5 +8,5 @@ class StatusForm(ModelForm):
         model = Status
         fields = ('name', )
         labels = {
-            'name': gettext('Имя')
+            'name': gettext_lazy('Имя')
         }

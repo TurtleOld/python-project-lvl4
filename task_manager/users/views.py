@@ -13,7 +13,6 @@ from task_manager.users.forms import RegisterUserForm, AuthUserForm
 from task_manager.mixins import HandleNoPermissionMixin
 
 
-# Create your views here.
 class UsersList(ListView):
     model = User
     template_name = 'users/users.html'
@@ -27,22 +26,12 @@ class CreateUser(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('login')
     success_message = gettext_lazy('Пользователь успешно зарегистрирован')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['button_text'] = gettext('Зарегистрировать')
-        return context
-
 
 class LoginUser(SuccessMessageMixin, LoginView):
     model = User
     template_name = 'users/login.html'
     form_class = AuthUserForm
     success_message = gettext_lazy('Вы залогинены')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['button_text'] = gettext('Войти')
-        return context
 
 
 class LogoutUser(LogoutView, SuccessMessageMixin):
@@ -67,11 +56,6 @@ class UpdateUser(LoginRequiredMixin,
     error_message = gettext_lazy('У вас нет разрешения на изменение другого '
                                  'пользователя')
     no_permission_url = 'users:list'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['button_text'] = gettext('Изменить')
-        return context
 
     def test_func(self):
         return self.request.user == self.get_object()

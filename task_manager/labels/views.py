@@ -33,14 +33,6 @@ class CreateLabel(SuccessMessageMixin, HandleNoPermissionMixin, CreateView):
                                  'Авторизуйтесь!')
     no_permission_url = 'login'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = gettext('Создание метки')
-        context['label'] = gettext('Имя')
-        context['button_text'] = gettext('Создать')
-
-        return context
-
 
 class UpdateLabel(LoginRequiredMixin,
                   SuccessMessageMixin, HandleNoPermissionMixin,
@@ -52,12 +44,6 @@ class UpdateLabel(LoginRequiredMixin,
     success_url = reverse_lazy('labels:list')
     error_message = gettext_lazy('У вас нет разрешения на изменение метки')
     no_permission_url = 'statuses:list'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = gettext('Изменение метки')
-        context['button_text'] = gettext('Изменить')
-        return context
 
 
 class DeleteLabel(LoginRequiredMixin,
@@ -77,8 +63,3 @@ class DeleteLabel(LoginRequiredMixin,
         else:
             super(DeleteLabel, self).form_valid(form)
         return redirect(self.success_url)
-
-    def get_context_data(self, **kwargs):
-        context = super(DeleteLabel, self).get_context_data(**kwargs)
-        context['title'] = gettext_lazy('Удаление метки')
-        return context

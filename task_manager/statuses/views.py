@@ -32,13 +32,6 @@ class CreateStatus(LoginRequiredMixin,
     success_message = gettext_lazy('Статус успешно создан')
     success_url = reverse_lazy('statuses:list')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = gettext('Создание статуса')
-        context['button_text'] = gettext('Создать')
-        context['label'] = gettext('Имя')
-        return context
-
 
 class UpdateStatus(LoginRequiredMixin,
                    SuccessMessageMixin,
@@ -52,12 +45,6 @@ class UpdateStatus(LoginRequiredMixin,
     success_message = gettext_lazy('Статус успешно изменён')
     error_message = gettext_lazy('У вас нет разрешения на изменение статуса')
     no_permission_url = 'statuses:list'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = gettext('Изменение статуса')
-        context['button_text'] = gettext('Изменить')
-        return context
 
 
 class DeleteStatus(LoginRequiredMixin,
@@ -78,5 +65,6 @@ class DeleteStatus(LoginRequiredMixin,
                                                       'статус, потому что он '
                                                       'используется'))
         else:
-            super(DeleteStatus, self).form_valid(form)
+            self.object.delete()
+            messages.success(self.request, self.success_message)
         return redirect(self.success_url)

@@ -31,6 +31,9 @@ msgstr "Task manager Hexlet"
 msgid "Пользователи"
 msgstr "Users"
 
+msgid "Список пользователей"
+msgstr "Users list"
+
 msgid "Вход"
 msgstr "Sign In"
 
@@ -118,6 +121,12 @@ msgstr "Create a task"
 msgid "Создать статус"
 msgstr "Create a status"
 
+msgid "Изменить статус"
+msgstr "Change Status"
+
+msgid "Создать метку"
+msgstr "Create a label"
+
 msgid "Удаление задачи"
 msgstr "Deleting a task"
 
@@ -153,6 +162,9 @@ msgstr "Are you sure you want to delete the status"
 
 msgid "Вы уверены, что хотите удалить задачу"
 msgstr "Are you sure you want to delete the task"
+
+msgid "Создание метки"
+msgstr "Creating a label"
 
 msgid "Обновление метки"
 msgstr "Updating a label"
@@ -201,6 +213,9 @@ msgstr "Status successfully changed"
 
 msgid "Задача успешно создана"
 msgstr "The task was successfully created"
+
+msgid "Статус успешно создан"
+msgstr "Status successfully created"
 
 msgid "Задача успешно изменена"
 msgstr "The task has been successfully changed"

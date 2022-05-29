@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block content %}
-    <title>{{ title_statuses_main }}</title>
+    <title>{% translate 'Список статусов' %}</title>
     <h1 class="my-4">{% translate 'Статусы' %}</h1>
     <a class="text-decoration-none" href="{% url 'statuses:create' %}">{% translate 'Создать статус' %}</a>
     <table class="bg-white mt-1 border table table-striped">
