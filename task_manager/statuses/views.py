@@ -1,9 +1,6 @@
-from django import http
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models.deletion import ProtectedError
-from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
@@ -76,10 +73,10 @@ class DeleteStatus(LoginRequiredMixin,
     no_permission_url = 'statuses:list'
 
     def form_valid(self, form):
-        if self.object.tasks.all():
+        if self.get_object().tasks.all():
             messages.error(self.request, gettext_lazy('Вы не можете удалить '
                                                       'статус, потому что он '
                                                       'используется'))
         else:
-            self.object.delete()
+            super(DeleteStatus, self).form_valid(form)
         return redirect(self.success_url)

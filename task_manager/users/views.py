@@ -1,10 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, \
-    UserPassesTestMixin, AccessMixin
+    UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext, gettext_lazy
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, \
