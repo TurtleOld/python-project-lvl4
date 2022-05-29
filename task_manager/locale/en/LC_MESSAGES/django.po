@@ -115,6 +115,9 @@ msgstr "Creating a task"
 msgid "Создать задачу"
 msgstr "Create a task"
 
+msgid "Создать статус"
+msgstr "Create a status"
+
 msgid "Удаление задачи"
 msgstr "Deleting a task"
 
