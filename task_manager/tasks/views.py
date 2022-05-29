@@ -83,3 +83,8 @@ class TaskView(LoginRequiredMixin,
     error_message = gettext('У вас нет прав на просмотр данной страницы! '
                             'Авторизуйтесь!')
     no_permission_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['labels'] = self.get_object().labels.all()
+        return context
