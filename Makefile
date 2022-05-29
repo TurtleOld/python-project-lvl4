@@ -8,7 +8,7 @@ start: migrate transcompile
 		@poetry run python manage.py runserver 127.0.0.1:8000
 
 install: .env
-		@poetry install --extras psycopg2-binary
+		@poetry install
 
 .env:
 		@test ! -f .env && cp .env.example .env
