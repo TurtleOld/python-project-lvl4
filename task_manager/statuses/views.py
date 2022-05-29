@@ -7,24 +7,24 @@ from django.utils.translation import gettext, gettext_lazy
 from django.views.generic import ListView, CreateView, UpdateView, FormView, \
     DeleteView
 
+from task_manager.mixins import HandleNoPermissionMixin
 from task_manager.statuses.forms import StatusForm
 from task_manager.statuses.models import Status
 
 
-class StatusesList(LoginRequiredMixin, ListView, AccessMixin):
+class StatusesList(LoginRequiredMixin, HandleNoPermissionMixin, ListView):
     model = Status
     template_name = 'statuses/list_statuses.html'
     context_object_name = 'statuses'
-    error_message = gettext('У вас нет прав на просмотр данной страницы! '
-                            'Авторизуйтесь!')
+    error_message = gettext_lazy('У вас нет прав на просмотр данной страницы! '
+                                 'Авторизуйтесь!')
     no_permission_url = 'login'
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
 
-
-class CreateStatus(SuccessMessageMixin, CreateView):
+class CreateStatus(LoginRequiredMixin,
+                   SuccessMessageMixin,
+                   HandleNoPermissionMixin,
+                   CreateView):
     model = Status
     template_name = 'statuses/create_status.html'
     form_class = StatusForm
@@ -41,9 +41,9 @@ class CreateStatus(SuccessMessageMixin, CreateView):
 
 class UpdateStatus(LoginRequiredMixin,
                    SuccessMessageMixin,
-                   AccessMixin,
+                   HandleNoPermissionMixin,
                    UpdateView,
-                   FormView, ):
+                   FormView):
     model = Status
     template_name = 'statuses/update_status.html'
     form_class = StatusForm
@@ -58,16 +58,12 @@ class UpdateStatus(LoginRequiredMixin,
         context['button_text'] = gettext('Изменить')
         return context
 
-    def handle_no_permission(self):
-        messages.error(self.request, self.error_message)
-        return redirect(self.no_permission_url)
-
 
 class DeleteStatus(LoginRequiredMixin,
                    SuccessMessageMixin,
-                   AccessMixin,
+                   HandleNoPermissionMixin,
                    DeleteView,
-                   FormView, ):
+                   FormView):
     model = Status
     template_name = 'statuses/delete_status.html'
     success_url = reverse_lazy('statuses:list')
