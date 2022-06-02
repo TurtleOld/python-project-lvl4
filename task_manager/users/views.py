@@ -3,6 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, \
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.db.models import ProtectedError
+from django.http import HttpResponseRedirect
 from django.utils.translation import gettext, gettext_lazy
 from django.urls import reverse_lazy
 from django.views.generic.list import ListView
@@ -63,7 +65,6 @@ class UpdateUser(LoginRequiredMixin,
 
 class DeleteUser(LoginRequiredMixin,
                  SuccessMessageMixin,
-                 UserPassesTestMixin,
                  HandleNoPermissionMixin,
                  DeleteView,
                  FormView, ):
@@ -72,8 +73,15 @@ class DeleteUser(LoginRequiredMixin,
     success_url = reverse_lazy('users:list')
     success_message = gettext_lazy('Пользователь успешно удалён')
     error_message = gettext_lazy('У вас нет разрешения на изменение другого '
-                                 'пользователя')
+                                 'пользователя, либо пользователь связан с '
+                                 'задачей')
     no_permission_url = 'users:list'
 
-    def test_func(self):
-        return self.request.user == self.get_object()
+    def form_valid(self, form):
+        try:
+            self.object.delete()
+        except ProtectedError:
+            messages.error(self.request, gettext_lazy(self.error_message))
+        else:
+            messages.success(self.request, self.success_message)
+        return HttpResponseRedirect(self.success_url)

@@ -190,6 +190,9 @@ msgstr "You can't delete someone else's task!"
 msgid "Вы не можете удалить статус, потому что он используется"
 msgstr "You can't delete the status because it is being used"
 
+msgid "У вас нет разрешения на изменение другого пользователя, либо пользователь связан с задачей"
+msgstr "You don't have permission to change another user, or the user is associated with the task"
+
 msgid "Только свои задачи"
 msgstr "Only your own tasks"
 
