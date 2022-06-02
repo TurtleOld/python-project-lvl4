@@ -66,6 +66,7 @@ class UpdateUser(LoginRequiredMixin,
 class DeleteUser(LoginRequiredMixin,
                  SuccessMessageMixin,
                  HandleNoPermissionMixin,
+                 UserPassesTestMixin,
                  DeleteView,
                  FormView, ):
     model = User
@@ -85,3 +86,6 @@ class DeleteUser(LoginRequiredMixin,
         else:
             messages.success(self.request, self.success_message)
         return HttpResponseRedirect(self.success_url)
+
+    def test_func(self):
+        return self.request.user == self.get_object()
